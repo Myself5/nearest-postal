@@ -42,22 +42,27 @@ Citizen.CreateThread(
 	end
 )
 -- text display thread
-Citizen.CreateThread(
-	function()
-		while true do
-			if nearest and not IsHudHidden() then
-				local text = config.text.format:format(postals[nearest.i].code, nearest.d)
-				SetTextScale(0.42, 0.42)
-				SetTextFont(4)
-				SetTextOutline()
-				BeginTextCommandDisplayText('STRING')
-				AddTextComponentSubstringPlayerName(text)
-				EndTextCommandDisplayText(config.text.posX, config.text.posY)
-			end
-			Wait(0)
-		end
-	end
-)
+--Citizen.CreateThread(
+--	function()
+--		while true do
+--			if nearest and not IsHudHidden() then
+--				local text = config.text.format:format(postals[nearest.i].code, nearest.d)
+--				SetTextScale(0.42, 0.42)
+--				SetTextFont(4)
+--				SetTextOutline()
+--				BeginTextCommandDisplayText('STRING')
+--				AddTextComponentSubstringPlayerName(text)
+--				EndTextCommandDisplayText(config.text.posX, config.text.posY)
+--			end
+--			Wait(0)
+--		end
+--	end
+--)
+
+exports('getPostal', function()
+  local postalcode = postals[nearest.i].code
+  return postalcode
+end)
 
 RegisterCommand(
 	'postal',
